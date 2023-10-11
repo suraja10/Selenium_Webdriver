@@ -1,0 +1,27 @@
+package seleniumbasic;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WebpageOpeningClosing {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//Setting system properties giving the name of the browser and the location of the driver in the local.
+		System.setProperty("webdriver.chrome.driver", "C:\\JAVA\\chromedriver-win64\\chromedriver.exe");
+		
+		
+		//Creating object for Webdriver Selenium interface using Chromedriver class as webpage is controlled by Selenium.
+		WebDriver driver = new ChromeDriver();
+		
+		//get method gives or opens the webpage
+		driver.get("https://www.leafground.com/dashboard.xhtml");
+		
+		//close method  closes the webpage
+		driver.close();
+		
+		
+	}
+
+}
