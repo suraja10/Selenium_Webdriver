@@ -1,0 +1,26 @@
+package seleniumbasic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FindElementsAndLocators {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\JAVA\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.google.co.in");
+		
+		//In order to interact with various web elements, they must be found using locators.
+		//There are eight locators : id, name, className, tagName, linkText, partialLinkText, xpath, cssSelector.
+		
+		//Accessing the search field using findElement method and using click method to just see the trending searches.
+		WebElement searchField = driver.findElement(By.name("q"));
+		searchField.click();
+		
+	}
+
+}
