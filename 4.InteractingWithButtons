@@ -1,0 +1,51 @@
+package seleniumbasic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class InteractingWithButtons {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\JAVA\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/button.xhtml");
+		
+		//1.Click a button :
+		//WebElement clickButton = driver.findElement(By.id("j_idt88:j_idt90"));
+		//clickButton.click();
+		
+		//2.Check if the button is disabled :
+		WebElement disabledButton = driver.findElement(By.id("j_idt88:j_idt92"));
+		if(disabledButton.isEnabled()==false)
+		{
+			System.out.println("The button is disabled");
+		}
+		
+		//3.Find the position of the button :
+		WebElement positionButton = driver.findElement(By.id("j_idt88:j_idt94"));
+		Point position = positionButton.getLocation();
+		int xValue = position.getX();
+		int yValue = position.getY();
+		System.out.println("The position of the button is:("+xValue+","+yValue+")");
+		
+		//4.Find the color of the button :
+		WebElement colorButton = driver.findElement(By.id("j_idt88:j_idt96"));
+		String color = colorButton.getCssValue("background-color");
+		System.out.println("The color of the button is: "+color );
+		
+		//5.Find the height and width of the button :
+		WebElement sizeButton = driver.findElement(By.id("j_idt88:j_idt98"));
+		Dimension dimension = sizeButton.getSize();
+		int height = dimension.getHeight();
+		int width = dimension.getWidth();
+		System.out.println("The dimensions of the button are, Height ="+height+", Width ="+width);
+		
+	}
+
+}
