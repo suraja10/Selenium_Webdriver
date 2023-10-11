@@ -1,0 +1,65 @@
+package seleniumbasic;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class InteractingWithTextBox {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\JAVA\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/input.xhtml");
+		
+		//1.Entering some Text in a text box :
+		WebElement nameField = driver.findElement(By.id("j_idt88:name"));
+		nameField.sendKeys("Sunshine");
+		
+		//2.Appending a word in the given text box :
+		//Note: In general, sendKeys method appends the text in a textbox.
+		WebElement appendCountry = driver.findElement(By.id("j_idt88:j_idt91"));
+		appendCountry.sendKeys("India");
+		
+		//3.Verifying the given text box is disabled :
+		WebElement disabledField = driver.findElement(By.id("j_idt88:j_idt93"));
+		if(disabledField.isEnabled()==false)
+		{
+			System.out.println("The given text box is disabled.");
+		}
+		
+		//4.Clear the text in text box :
+		WebElement clearTextBox = driver.findElement(By.id("j_idt88:j_idt95"));
+		clearTextBox.clear();
+		
+		//5.Retrieve the text present in the text box :
+		WebElement retrieveText = driver.findElement(By.id("j_idt88:j_idt97"));
+		String retrievedText = retrieveText.getAttribute("value");
+		System.out.println(retrievedText);
+		
+		//6.Check that pressing TAB key after entering email in the given text box navigates the cursor to next field :
+		WebElement emailAndTab = driver.findElement(By.id("j_idt88:j_idt99"));
+		emailAndTab.sendKeys("abc@gmail.com"+Keys.TAB);
+		
+		//7.Press ENTER key and verify the error message :
+		WebElement enterError = driver.findElement(By.id("j_idt106:thisform:age"));
+		enterError.sendKeys(Keys.ENTER);
+		
+		//8.Click and check the label name changes its position :
+		WebElement usernamePosition = driver.findElement(By.id("j_idt106:float-input"));
+		usernamePosition.click();
+		
+		//9.Type a number and check if the slider moves accordingly :
+		WebElement sliderChange = driver.findElement(By.id("j_idt106:slider"));
+		sliderChange.sendKeys("55");
+		
+		//10.Click the text box and confirm that the keyboard appears :
+		WebElement keyboardOnClick = driver.findElement(By.id("j_idt106:j_idt122"));
+		keyboardOnClick.click();
+		
+	}
+
+}
