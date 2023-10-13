@@ -1,1 +1,103 @@
+package seleniumbasic;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class InteractingWithDropdowns {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\JAVA\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/select.xhtml");
+		
+		//We need to first find the drop down tool and pass it to the select class. So creating a Select class object.
+		Select select;
+		
+		
+		//1.Select an  option from the drop down :  
+		WebElement selectTool = driver.findElement(By.xpath("//*[@id=\"j_idt87\"]/div/div[1]/div[1]/div/div/select"));
+		select = new Select(selectTool);
+		select.selectByVisibleText("Selenium");
+		
+		
+		//2.Select an option using index and check that the next dropdown lists the changes accordingly :
+		//Selecting the country as India and the checking that only Indian cities are displayed on the next field.
+		WebElement selectCountry = driver.findElement(By.xpath("//*[@id=\"j_idt87:country_label\"]"));
+		selectCountry.click();
+		WebElement countryIndia = driver.findElement(By.xpath("//*[@id=\"j_idt87:country_3\"]"));
+		countryIndia.click(); //India country gets selected.
+		
+		//Delaying the execution by 3 seconds in order for the cities to load according to the country selected.
+		Thread.sleep(3000);
+		
+		//Now, clicking the select City field to retrieve the options from the cities list.
+		WebElement selectCity = driver.findElement(By.xpath("//*[@id=\"j_idt87:city_label\"]"));
+		selectCity.click();
+		
+		//Retrieving the city options and printing it.
+		List<WebElement> selectCities = driver.findElements(By.xpath("//*[@id=\"j_idt87:city_items\"]/li")); 
+		for(WebElement options : selectCities)
+		{
+			System.out.println(options.getText());
+			if(options.getText().equals("Delhi"))
+			{
+				options.click();
+			}
+		}
+		
+		
+		/*//3.Multiple select from drop down :
+		WebElement selectCourse = driver.findElement(By.xpath("//*[@id=\"j_idt87:auto-complete\"]/button"));
+		selectCourse.click();
+		
+        //Retrieving the options and selecting multiple courses.
+		List<WebElement> coursesList = driver.findElements(By.xpath("//*[@id=\"j_idt87:auto-complete_panel\"]/li"));
+		for(WebElement course : coursesList)
+		{
+			if(course.getText().equals("AWS"))
+				course.click();
+			else if(course.getText().equalsIgnoreCase("Playwright"))
+				course.click();
+			else if(course.getText().equalsIgnoreCase("postman"))
+				course.click();
+			else
+				continue;
+		}
+		
+		Thread.sleep(3000); */
+		
+		//4.Select a language option and choose the number 2 in the next field of the language chosen :
+		WebElement selectLang = driver.findElement(By.xpath("//*[@id=\"j_idt87:lang_label\"]"));
+		selectLang.click();
+		
+		//Retrieving the language options and choosing English.
+		List<WebElement> langOptions = driver.findElements(By.xpath("//*[@id=\"j_idt87:lang_items\"]/li"));
+		for(WebElement option : langOptions)
+		{
+			if(option.getText().equals("English"))
+					option.click();
+		}
+		
+		Thread.sleep(2000);
+		
+		//Similarly selecting Two value from the next field.
+		WebElement selectTwo = driver.findElement(By.xpath("//*[@id=\"j_idt87:value_label\"]"));
+		selectTwo.click();
+		List<WebElement> numberOptions = driver.findElements(By.xpath("//*[@id=\"j_idt87:value_items\"]/li"));
+		for(WebElement number : numberOptions)
+		{
+			if(number.getText().equals("Two"))
+				number.click();
+		}
+		
+	}
+
+}
 
