@@ -7,3 +7,4 @@ INDEX :
 3. Interactions with Web Element - Text Box.
 4. Interactions with Web Element - Button.
 5. Interactions with Web Element - Dropdown.
+6. Interactions with Web Element - Check Box.
