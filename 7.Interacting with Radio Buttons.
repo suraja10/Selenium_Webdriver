@@ -1,0 +1,53 @@
+package seleniumbasic;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class InteractingWithRadioButtons {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\JAVA\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/radio.xhtml");
+		
+		//1.Click a radio button :
+		WebElement selectButton = driver.findElement(By.xpath("//*[@id=\"j_idt87:console1\"]/tbody/tr/td[3]/label"));
+		selectButton.click();
+		
+		//2.Select and deselect a Radio button :
+		WebElement unselectable = driver.findElement(By.xpath("//*[@id=\"j_idt87:city2\"]/div/div[1]/label"));
+		unselectable.click();
+		Thread.sleep(2000);
+		System.out.println("Chennai city button is selected and now gets unselected");
+		unselectable.click();
+		
+		//3.Find the selected button from the given buttons :
+		List<WebElement> selectedRadioButtons = driver.findElements(By.xpath("//*[@id=\"j_idt87:console1\"]"));
+		for (WebElement select : selectedRadioButtons)
+		{
+			System.out.println(select);
+			if(select.isSelected())
+				System.out.println("The selected radio button is: "+ select.getText());
+		}
+		
+		//4.Select the button if not selected :
+		List<WebElement> ageGroupButtons = driver.findElements(By.xpath("//*[@id=\"j_idt87:age\"]"));
+		for (WebElement ageSelect : ageGroupButtons)
+			{
+			System.out.println(ageSelect.getText());
+			if(ageSelect.getText().equals("1-20 Years") && !(ageSelect.isSelected()))
+			{
+				ageSelect.click();
+			}
+			
+			}
+        Thread.sleep(3000);
+	}
+
+}
