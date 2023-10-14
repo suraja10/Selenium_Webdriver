@@ -8,3 +8,4 @@ INDEX :
 4. Interactions with Web Element - Button.
 5. Interactions with Web Element - Dropdown.
 6. Interactions with Web Element - Check Box.
+7. Interactions with Web Element - Radio Button.
