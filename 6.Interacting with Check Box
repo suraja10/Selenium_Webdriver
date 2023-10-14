@@ -1,0 +1,75 @@
+package seleniumbasic;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class InteractingWithCheckBox {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\JAVA\\chromedriver-win64\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/checkbox.xhtml");
+		
+		//1.Check a basic check box :
+		WebElement basicCheckBox = driver.findElement(By.xpath("//*[@id=\"j_idt87:j_idt89\"]/div[2]"));
+		basicCheckBox.click();
+		
+		//2.Check notification  on clicking a check box :
+		WebElement notificationCheckBox = driver.findElement(By.xpath("//*[@id=\"j_idt87:j_idt91\"]/div[2]"));
+		notificationCheckBox.click();
+		Thread.sleep(1000);
+		notificationCheckBox.click();
+		
+		//3.Select multiple check boxes :
+		WebElement Java = driver.findElement(By.xpath("//*[@id=\"j_idt87:basic\"]/tbody/tr/td[1]/div/div[2]"));
+		Java.click();
+		WebElement Javascript = driver.findElement(By.xpath("//*[@id=\"j_idt87:basic\"]/tbody/tr/td[3]/div/div[2]"));
+		Javascript.click();
+		WebElement Others = driver.findElement(By.xpath("//*[@id=\"j_idt87:basic\"]/tbody/tr/td[5]/div/div[2]"));
+		Others.click();
+		System.out.println("Java, Javascript and Others are selected.");
+		
+		//4.Tri-state Check box operations :
+		WebElement triStateBox = driver.findElement(By.xpath("//*[@id=\"j_idt87:ajaxTriState\"]/div[2]"));
+		triStateBox.click();
+		Thread.sleep(1000);
+		triStateBox.click();
+		Thread.sleep(1000);
+		triStateBox.click();
+		Thread.sleep(1000);
+		
+		//5.Click a toggle switch :
+		WebElement toggleSwitch = driver.findElement(By.xpath("//*[@id=\"j_idt87:j_idt100\"]/div[2]"));
+		toggleSwitch.click();
+		
+		//6.Check if a check box is disabled :
+		WebElement disabledBox = driver.findElement(By.xpath("//*[@id=\"j_idt87:j_idt102\"]"));
+		if(!disabledBox.isSelected())
+		{
+			System.out.println("The check box is disabled.");
+		}
+		
+		//7.Multiple select check box :
+		WebElement multipleSelect = driver.findElement(By.xpath("//*[@id=\"j_idt87:multiple\"]/ul"));
+		multipleSelect.click();
+		List<WebElement> multipleSelectOptions = driver.findElements(By.xpath("//*[@id=\"j_idt87:multiple_panel\"]/div[2]/ul/li"));
+		
+		//I am just selecting the options that starts with B.
+		for (WebElement option : multipleSelectOptions)
+		{
+			System.out.println(option.getText());
+			if(option.getText().startsWith("B"))
+			{
+			option.click();	
+			}
+		}
+		
+	}
+
+}
